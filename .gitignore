@@ -16,3 +16,4 @@ FastForward Linux/scan-fct_pddl.tab.o
 FastForward Linux/scan-ops_pddl.tab.c
 FastForward Linux/scan-ops_pddl.tab.o
 FastForward Linux/search.o
+FastForward Linux/*
