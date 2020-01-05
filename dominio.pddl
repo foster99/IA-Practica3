@@ -19,65 +19,51 @@
         (predecesor ?x - libro ?y - libro)
         (paralelo ?x - libro ?y - libro)
 
-        (leido ?x - libro ?y - mes)
+        (lee ?x - libro ?y - mes)
         (leido ?x - libro)
-        (quiere ?x - libro)
     )
 
-    ; Marcar todos los libros "necesarios a leer" como libros que el usuario quiere leer.
-    (:action anadir_a_lista_de_lectura
-        :parameters (?l - libro ?aux - libro)
-        :precondition (and 
-            (quiere ?l)
-            (not (quiere ?aux))
-            (not (leido ?aux))
-            (or 
-                (predecesor ?aux ?l)
-                (paralelo ?aux ?l)
-            )
-        )
-        :effect (and (quiere ?aux))
-    )
     
-    ; Assignar un libro como "leido" en el caso de tener un predecesor
+    ; Establecer mes de lectura a libros que tengan su predecesor establecido 
     (:action leer_con_anterior
-        :parameters (?l - libro ?m - mes ?lant - libro ?mant - mes)
+        :parameters (?l - libro ?m - mes)
         :precondition (and 
-            (quiere ?l)
-            (not (leido ?l))
-            (predecesor ?lant ?l)
-
-            (not (paralelo ?l))
-
-            (leido ?lant)           
-            (leido ?lant ?mant)
-            (anterior ?mant ?m)
-        )
-        :effect (and (leido ?l) (leido ?l ?m))
-    )
-
-
-    (:action leer_con_paralelo
-        :parameters (?l - libro ?m - mes ?lpar - libro ?mpar - mes ?lant - libro ?mant - mes)
-        :precondition (and
-
-            (quiere ?l)
-            (not (leido ?l))
-            (paralelo ?lpar ?l)
-            (leido ?lpar)
-            (leido ?lpar ?mpar)
-            (anterior_directo ?m ?y)
             
-            (or 
-                (leido ?lant)               ; O bien lo ha leido el usuario en el pasado
-                (and                        ; O bien hemos planificado su lectura en un mes anterior
-                    (leido ?lant ?mant)
-                    (anterior ?mant ?m)
-                )
+            (not (leido ?l))
+
+            (forall (?auxl - libro)
+                (imply (predecesor ?auxl ?l) (and
+                    (leido ?auxl)
+                    (not (exists (?auxm - mes) (and (lee ?auxl ?auxm) (or (anterior ?m ?auxm) (= ?m ?auxm)))))
+                ))
             )
+
         )
-        :effect (and )
+        :effect (and (leido ?l) (lee ?l ?m))
     )
+
+
+    ;(:action leer_con_paralelo
+    ;    :parameters (?l - libro ?m - mes ?lpar - libro ?mpar - mes ?lant - libro ?mant - mes)
+    ;    :precondition (and
+
+    ;        (not (leido ?l))
+;
+ ;           (predecesor ?lant ?l)
+  ;          (leido ?lant)
+   ;         (lee ?lant ?mant)
+  ;          (anterior ?mant ?m)
+;
+ ;           (forall (?p - libro) (and
+   ;             (paralelo ?l ?p)
+    ;            (leido ?p)
+     ;       ))
+
+            
+
+      ;  )
+       ; :effect (and (and (leido ?l) (lee ?l ?m)))
+    ;)
     
 
 )

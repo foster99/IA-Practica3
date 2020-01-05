@@ -1,10 +1,24 @@
 (define (problem Book-Planner)
     (:domain books)
     (:objects ghost a1 a2 a3 a4 b1 b2 c1 d1 d2 d3 e1 e2 f1 f2 f3 f4 f5 g1 g2 g3 h1  - libro
-              enero febrero marzo abril mayo junio julio agosto setiembre octubre noviembre diciembre - mes
+              past enero febrero marzo abril mayo junio julio agosto setiembre octubre noviembre diciembre - mes
     )
 
     (:init 
+
+        (anterior past enero)
+        (anterior past febrero)
+        (anterior past marzo)
+        (anterior past abril)
+        (anterior past mayo)
+        (anterior past junio)
+        (anterior past julio)
+        (anterior past agosto)
+        (anterior past setiembre)
+        (anterior past octubre)
+        (anterior past noviembre)
+        (anterior past diciembre)
+        
         (anterior enero febrero)
         (anterior enero marzo)
         (anterior enero abril)
@@ -54,7 +68,7 @@
         (anterior junio agosto)
         (anterior junio setiembre)
         (anterior junio octubre)
-        (anterior junio noviembre
+        (anterior junio noviembre)
         (anterior junio diciembre)
         (anterior julio agosto)
         (anterior julio setiembre)
@@ -63,10 +77,10 @@
         (anterior julio diciembre)
         (anterior agosto setiembre)
         (anterior agosto octubre)
-        (anterior agosto noviembre
+        (anterior agosto noviembre)
         (anterior agosto diciembre)
         (anterior setiembre octubre)
-        (anterior setiembre noviembre
+        (anterior setiembre noviembre)
         (anterior setiembre diciembre)
         (anterior octubre noviembre)
         (anterior octubre diciembre)
@@ -96,22 +110,33 @@
         (predecesor a1 a2)
         (predecesor a2 a3)
         (predecesor a3 a4)
+
         (predecesor b1 b2)
+
         (predecesor d1 d2)
         (predecesor d2 d3)
+        
         (predecesor e1 e2)
+        
         (predecesor f1 f2)
         (predecesor f2 f3)
         (predecesor f3 f4)
         (predecesor f4 f5)
+
+        (predecesor a4 f3)
+
         (predecesor g1 g2)
         (predecesor g2 g3)
 
-a1 a2 a3 a4 b1 b2 c1 d1 d2 d3 e1 e2 f1 f2 f3 f4 f5 g1 g2 g3 h1
-
-        (leido a1)
+        (leido ghost)
+        (lee ghost past)
+        
         (leido f1)
-        (leido f2)
-        (leido a1)
-
+        (lee f1 past)
     )
+    (:goal
+        (and
+            (leido f5)
+        )
+    )
+)

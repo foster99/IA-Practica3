@@ -1,1 +1,1 @@
-ff -o dominio.pddl -f problema.pddl
+./FastForward\ Linux/ff -o dominio.pddl -f problema.pddl
