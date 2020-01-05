@@ -2,24 +2,10 @@
     (:domain books)
     
     (:objects a1 a2 a3 a4 b1 b2 c1 d1 d2 d3 e1 e2 f1 f2 f3 f4 f5 g1 g2 g3 h1  - libro
-              past diciembre noviembre octubre setiembre agosto julio junio mayo abril marzo febrero enero - mes
+              diciembre noviembre octubre setiembre agosto julio junio mayo abril marzo febrero enero - mes
     )
 
     (:init 
-
-        (anterior past past)
-        (anterior past enero)
-        (anterior past febrero)
-        (anterior past marzo)
-        (anterior past abril)
-        (anterior past mayo)
-        (anterior past junio)
-        (anterior past julio)
-        (anterior past agosto)
-        (anterior past setiembre)
-        (anterior past octubre)
-        (anterior past noviembre)
-        (anterior past diciembre)
         
         (anterior enero febrero)
         (anterior enero marzo)
@@ -108,7 +94,7 @@
         (predecesor e2 d1)
         
         (leido f1)
-        ;(lee f1 past)
+        
     )
     (:goal
         (and
