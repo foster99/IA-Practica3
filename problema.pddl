@@ -1,24 +1,12 @@
 (define (problem Book-Planner)
     (:domain books)
-    (:objects ghost a1 a2 a3 a4 b1 b2 c1 d1 d2 d3 e1 e2 f1 f2 f3 f4 f5 g1 g2 g3 h1  - libro
-              past enero febrero marzo abril mayo junio julio agosto setiembre octubre noviembre diciembre - mes
+    
+    (:objects a1 a2 a3 a4 b1 b2 c1 d1 d2 d3 e1 e2 f1 f2 f3 f4 f5 g1 g2 g3 h1  - libro
+              diciembre noviembre octubre setiembre agosto julio junio mayo abril marzo febrero enero - mes
     )
 
     (:init 
-
-        (anterior past enero)
-        (anterior past febrero)
-        (anterior past marzo)
-        (anterior past abril)
-        (anterior past mayo)
-        (anterior past junio)
-        (anterior past julio)
-        (anterior past agosto)
-        (anterior past setiembre)
-        (anterior past octubre)
-        (anterior past noviembre)
-        (anterior past diciembre)
-        
+      
         (anterior enero febrero)
         (anterior enero marzo)
         (anterior enero abril)
@@ -86,57 +74,67 @@
         (anterior octubre diciembre)
         (anterior noviembre diciembre)
 
-        (anterior_directo enero febrero)
-        (anterior_directo febrero marzo)
-        (anterior_directo marzo abril)
-        (anterior_directo abril mayo)
-        (anterior_directo mayo junio)
-        (anterior_directo junio julio)
-        (anterior_directo julio agosto)
-        (anterior_directo agosto setiembre)
-        (anterior_directo setiembre octubre)
-        (anterior_directo octubre noviembre)
-        (anterior_directo noviembre diciembre)
-
-        (predecesor ghost a1)
-        (predecesor ghost b1)
-        (predecesor ghost c1)
-        (predecesor ghost d1)
-        (predecesor ghost e1)
-        (predecesor ghost f1)
-        (predecesor ghost g1)
-        (predecesor ghost h1)
+        (dist01 enero enero)
+        (dist01 enero febrero)
+        (dist01 febrero enero)
+        (dist01 febrero febrero)
+        (dist01 febrero marzo)
+        (dist01 marzo febrero)
+        (dist01 marzo marzo)
+        (dist01 marzo abril)
+        (dist01 abril marzo)
+        (dist01 abril abril)
+        (dist01 abril mayo)
+        (dist01 mayo abril)
+        (dist01 mayo mayo)
+        (dist01 mayo junio)
+        (dist01 junio mayo)
+        (dist01 junio junio)
+        (dist01 junio julio)
+        (dist01 julio junio)
+        (dist01 julio julio)
+        (dist01 julio agosto)
+        (dist01 agosto julio)
+        (dist01 agosto agosto)
+        (dist01 agosto setiembre)
+        (dist01 setiembre agosto)
+        (dist01 setiembre setiembre)
+        (dist01 setiembre octubre)
+        (dist01 octubre setiembre)
+        (dist01 octubre octubre)
+        (dist01 octubre noviembre)
+        (dist01 noviembre octubre)
+        (dist01 noviembre noviembre)
+        (dist01 noviembre diciembre)
+        (dist01 diciembre noviembre)
+        (dist01 diciembre diciembre)
         
         (predecesor a1 a2)
         (predecesor a2 a3)
         (predecesor a3 a4)
-
         (predecesor b1 b2)
-
         (predecesor d1 d2)
         (predecesor d2 d3)
-        
         (predecesor e1 e2)
-        
         (predecesor f1 f2)
         (predecesor f2 f3)
         (predecesor f3 f4)
         (predecesor f4 f5)
-
-        (predecesor a4 f3)
-
         (predecesor g1 g2)
         (predecesor g2 g3)
 
-        (leido ghost)
-        (lee ghost past)
+        (predecesor a4 f3)
+        (predecesor d2 a2)
+
+        (paralelo d1 g2)
         
         (leido f1)
-        (lee f1 past)
     )
     (:goal
         (and
             (leido f5)
+            (leido c1)
+            (end)
         )
     )
 )
