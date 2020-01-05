@@ -5,6 +5,15 @@
         :typing
         :equality
         :adl
+        :fluents
+    )
+
+    (:functions
+        (sumaPag ?m - mes ?l - libro)
+    )
+
+    (:metric minimize 
+        (forall () (sumaPag ?m ?l)
     )
 
     (:types

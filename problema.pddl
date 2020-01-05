@@ -108,6 +108,8 @@
         (dist01 noviembre diciembre)
         (dist01 diciembre noviembre)
         (dist01 diciembre diciembre)
+
+        (= (p1) 0)
         
         (predecesor a1 a2)
         (predecesor a2 a3)
