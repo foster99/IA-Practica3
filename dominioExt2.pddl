@@ -15,13 +15,13 @@
     (:predicates
         
         ; PREDECESORES
-        (anterior ?x - mes ?y - mes)                    ; Expresa que el mex X es estrictamente anterior al mes Y.
-        (predecesor ?x - libro ?y - libro)      ; Expresa que el libro X es predecesor del libro Y.
-        (predecesor_pendiente ?x - libro ?y - mes)     ; Expresa que el libro X debe ser leido en un mes estrictamente posterior a Y.
+        (anterior ?x - mes ?y - mes)                        ; Expresa que el mex X es estrictamente anterior al mes Y.
+        (predecesor ?x - libro ?y - libro)              ; Expresa que el libro X es predecesor del libro Y.
+        (predecesor_pendiente ?x - libro ?y - mes)      ; Expresa que el libro X debe ser leido en un mes estrictamente posterior a Y.
         
         ; PARALELOS
-        (dist01 ?x - mes ?y - mes)                      ; Expresa que el mex X esta a distancia (0,1) de Y.
-        (paralelo ?x - libro ?y - libro)              ; Expresa que el libro X es paralelo al libro Y
+        (dist01 ?x - mes ?y - mes)                           ; Expresa que el mex X esta a distancia (0,1) de Y.
+        (paralelo ?x - libro ?y - libro)                  ; Expresa que el libro X es paralelo al libro Y
         (paralelos_pendientes ?x - libro ?y - mes)    ; Expresa que el libro X debe ser leido en un mes a distancia (0,1) de Y.
 
         ; CONTROL
@@ -30,22 +30,34 @@
     )
 
 
-    ; Accion que elimina todas las restricciones de predecesor y paralelo que tienen los libros ya leidos, dado que estas no interferiran en el plan
-    ; Esta accion solo es ejecutada para los libros que el usuario ya se ha leido previamente (libros fuera del plan).
+    ; Accion que elimina todas las restricciones de predecesor y paralelo que tienen los
+    ; libros ya leidos, dado que estas no interferiran en el plan. Esta accion solo es
+    ; ejecutada para los libros que el usuario ya se ha leido previamente (libros fuera del plan).
+    
     (:action set_leido
         :parameters (?l - libro)
         :precondition (and (leido ?l) (not (end)))
         :effect (and
-            (forall (?p - libro) (when (predecesor ?l ?p) (not (predecesor ?l ?p))))
-            (forall (?p - libro) (when (paralelo ?l ?p) (and (not (paralelo ?l ?p))(not (paralelo ?p ?l)))))
+            (forall (?p - libro)
+                (when (predecesor ?l ?p)
+                    (not (predecesor ?l ?p))    ; Elimina las relaciones de predecesor.
+                )
+            )                        
+            (forall (?p - libro)
+                (when (paralelo ?l ?p) (and
+                    (not (paralelo ?l ?p))      ; Elimina las relaciones de paralelo
+                    (not (paralelo ?p ?l))      ; en ambos sentidos de la relacion
+                ))
+            ) 
         )
     )
 
 
-    ; Accion que controla que la planificacion acabe solo cuando se hayan introducido todos los paralelos pendientes.
+    ; Accion que controla que la planificacion acabe solo cuando se hayan introducido
+    ; todos los paralelos pendientes.
     (:action end
         :parameters ()
-        :precondition (not (exists (?p - libro ?m - mes) (paralelos_pendientes ?p ?m)))
+        :precondition (not (exists (?p - libro ?m - mes)(paralelos_pendientes ?p ?m)))
         :effect (end)
     )
 
