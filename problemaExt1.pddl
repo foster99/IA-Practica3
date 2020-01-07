@@ -97,10 +97,8 @@
         
     )
     (:goal
-        (and
+        (and 
             (leido f5)
-            (leido g2)
-            (forall (?l - libro) (leido ?l))
         )
     )
 )
