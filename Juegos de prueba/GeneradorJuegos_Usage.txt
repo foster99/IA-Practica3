@@ -1,0 +1,13 @@
+
+1. Introducir el número de libros a generar, entre 1 y 26, los cuales serán nombrados con letras de la ‘a’ a la ‘z’.
+
+2. Introducir la probabilidad de que un libro sea predecesor de otro , entre 0 y 1. Esto generará los hechos (predecesor x y), donde X e Y son libros. 
+
+3. Introducir la probabilidad de que un libro sea paralelo a otro otro , entre 0 y 1. Esto generará los hechos (paralelo x y), donde X e Y son libros.
+
+4. Introducir los libros que se ha leído. Los libros deben estar entre los creados anteriormente, si no el programa generará hechos con libros inexistentes. Se pueden seleccionar todos a la vez escribiendo ‘all’. Esto generará las hechos de (leido x) en la parte “init” del problema, donde x es un libro.
+
+5. Introducir los libros que se se quiere leer (goal). De igual manera, los libros deben estar entre los creados anteriormente, si no el programa generará hechos con libros inexistentes. Se pueden seleccionar todos a la vez escribiendo ‘all’. Esto generará los hechos de (leido x) en la parte “goal” del problema, donde x es un libro.
+
+6. El programa genera automáticamente un problema con las características indicadas. El problema es un fichero "problema.pddl", y es creado en el directorio donde se está ejecutando el programa.
+
