@@ -1,1 +1,0 @@
-ff -O -o dominio.pddl -f problema.pddl
