@@ -1,3 +1,9 @@
+Instrucciones de compilación y ejecución:
+
+Compilación: javac GeneradorJuegos.java
+Ejecución: java GeneradorJuegos
+
+Instrucciones de uso:
 
 1. Introducir el número de libros a generar, entre 1 y 26, los cuales serán nombrados con letras de la ‘a’ a la ‘z’.
 
